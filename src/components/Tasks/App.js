@@ -7,6 +7,7 @@ import Alert from "./Alert";
 import { useGlobalContext } from "./context";
 import Colors from "./Colors";
 import DarkModeToggle from './DarkModeToggle';
+import { AppProvider } from "./context";
 
 const App = () => {
   const {
@@ -85,6 +86,7 @@ const App = () => {
   };
 
   return (
+  <AppProvider>
   <>
     <div className='container' onClick={hideColorsContainer}>
       {isColorsOpen && <Colors />}
@@ -145,6 +147,7 @@ const App = () => {
 		<a href='https://github.com/ilyasbelaoud' target='_blank' rel="noopener noreferrer"><FaGithub className='github'/></a>
 	</div>
 	</>
+  </AppProvider>
   );
 };
 
