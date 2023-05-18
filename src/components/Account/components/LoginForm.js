@@ -4,20 +4,25 @@ import classes from "./LoginForm.module.scss";
 import usernameIcon from "../assets/akar-icons_person.svg";
 import passwordIcon from "../assets/carbon_password.svg";
 import ValidUserContext from "../authCheck";
+import { useNavigate } from "react-router-dom";
 
-let isInitial = true;
 
 function LoginForm() {
   const validUserContext = useContext(ValidUserContext);
-
+  const navigate = useNavigate();
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
+  console.log(validUserContext.isLoggedIn)
+
   useEffect(() => {
-    if (isInitial) {
-      validUserContext.localAuthCheck();
-      isInitial = false;
-    }
-  }, [validUserContext]);
+    validUserContext.localAuthCheck();
+
+}, [validUserContext]);
+
+if(validUserContext.isLoggedIn){
+  navigate("/");
+}
+
 
   const submitHandler = (event) => {
     event.preventDefault();
